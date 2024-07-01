@@ -19,10 +19,10 @@ def get_my_ipaddress(request):
      client_ip_address = get_client_ip.json().get('ipString')
      
      # get the Requester City Location for OpenweatherAPI to get it's temperatur details
-     get_client_location_by_ip_address = requests.get(url=f"https://ipinfo.io/41.184.49.67/json?token={os.getenv('IP_INFO_TOKEN')}")
+     get_client_location_by_ip_address = requests.get(url=f"https://ipinfo.io/41.184.49.67/json?token=673a8868f320dd")
      client_location = get_client_location_by_ip_address.json().get('city')
      
-     openweather_url = f'https://api.openweathermap.org/data/2.5/weather?q={client_location}&appid={os.getenv('OPEN_WEATHER_API_KEY')}'
+     openweather_url = f'https://api.openweathermap.org/data/2.5/weather?q={client_location}&appid=4e2f3cff62ac3b0aa61f9ab1f840cf46'
      tempetature = requests.get(openweather_url).json()['main']['temp']
      
      return JsonResponse({
