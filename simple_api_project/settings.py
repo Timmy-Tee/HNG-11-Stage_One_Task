@@ -13,9 +13,10 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-mpb$a3(8gtvg)qypgn6b@&+s%hnd+cu&i5$07sx!2!v&0ysc%q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('SERVER_ORIGIN').split(",")
+# ALLOWED_HOSTS = os.getenv('SERVER_ORIGIN').split(",")
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
