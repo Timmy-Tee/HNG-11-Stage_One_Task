@@ -11,12 +11,13 @@ def error404(request, exception):
 
 # Create your views here.
 def get_my_ipaddress(request):
-     # The name of the visitor
      visitor_name = "Guest" or request.GET.get('visitor_name')
-     
-     # The current Ip Address of the visitor using the BIGDATACLUD.net api route
-     get_client_ip = requests.get(url="https://api.ipify.org?format=json")
-     client_ip_address = get_client_ip.json().get('ip')
+
+     ip = request.META.get('HTTP_X_FORWARDED_FOR')
+     if ip:     
+          client_ip_address = ip.split(',')[0].strip()
+     else:
+          client_ip_address = request.META.get('REMOTE_ADDR')
      
      # get the Requester City Location for OpenweatherAPI to get it's temperatur details
      get_client_location_by_ip_address = requests.get(url=f"https://ipinfo.io/{client_ip_address}/json?token={os.getenv('IP_INFO_TOKEN')}")
