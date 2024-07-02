@@ -11,8 +11,10 @@ def error404(request, exception):
 
 # Create your views here.
 def get_my_ipaddress(request):
-     visitor_name = "Guest" or request.GET.get('visitor_name')
-
+     visitor_name = request.GET.get('visitor_name')
+     if not visitor_name:
+          visitor_name = "Guest"
+     
      ip = request.META.get('HTTP_X_FORWARDED_FOR')
      if ip:     
           client_ip_address = ip.split(',')[0].strip()
